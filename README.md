@@ -1,14 +1,15 @@
-# Welcome to your CDK TypeScript project
+# Tailscale exit nodes on AWS
 
-This is a blank project for CDK development with TypeScript.
+This is a simple CDK stack that automates the provisioning of Tailscale exit nodes on AWS. It is 
+decribed in more detail in [this blog post](blog.scottgerring.com/automating-tailscale-exit-nodes-on-aws/).
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+To use it, simply edit [bin/tailscale-exitnodes-cdk.ts](bin/tailscale-exitnodes-cdk.ts) to list the
+regions you want to use:
 
-## Useful commands
+```typescript
+  stackForRegion('ExitNodesStackSydney', 'ap-southeast-2', "TSSydneyExitNode"),
+  stackForRegion('ExitNodesStackZurich', 'eu-central-2', "TSZurichExitNode")
+];
+```
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+Next, set the environment variable `TAILSCALE_AUTH_KEY` to your tailscale auth key and deploy with `cdk deploy`.
