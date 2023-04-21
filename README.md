@@ -13,3 +13,6 @@ regions you want to use:
 ```
 
 Next, set the environment variable `TAILSCALE_AUTH_KEY` to your tailscale auth key and deploy with `cdk deploy`.
+
+> **Warning**
+> This stack deploys EC2 instances and has cost implications!
